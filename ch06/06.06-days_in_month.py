@@ -1,24 +1,13 @@
 import sys
 
-DayList = ["Sunday", "Monday", "Tuesday",
-           "Wednesday", "Thursday", "Friday", "Saturday"]
+Calender = dict(January=31, February=28, March=31, April=30,
+                May=31, June=30, July=31, August=31,
+                September=30, October=31, November=30, December=31)
 
 
-def day_add(Day, delta):
-    new_day = (day_num(Day) + delta) % 7
-    return day_name(new_day)
-
-
-def day_name(N):
-    if N in range(7):
-        return DayList[N]
-    else:
-        return None
-
-
-def day_num(Day):
-    if Day in DayList:
-        return DayList.index(Day)
+def days_in_month(month):
+    if month in Calender:
+        return Calender[month]
     else:
         return None
 
@@ -36,13 +25,9 @@ def test(did_pass):
 def test_suite():
     """ Run the suite of tests for code in this module (this file).
     """
-    test(day_add("Monday", 4) == "Friday")
-    test(day_add("Tuesday", 0) == "Tuesday")
-    test(day_add("Tuesday", 14) == "Tuesday")
-    test(day_add("Sunday", 100) == "Tuesday")
-    test(day_add("Sunday", -1) == "Saturday")
-    test(day_add("Sunday", -7) == "Sunday")
-    test(day_add("Tuesday", -100) == "Sunday")
+    test(days_in_month("February") == 28)
+    test(days_in_month("December") == 31)
+    test(days_in_month("xxx") == None)
 
 
 test_suite()  # Here is the call to run the tests
