@@ -1,19 +1,19 @@
 import sys
 
 
-def turn_clockwise(direction):
-    if direction == "N":
-        new_direction = "E"
-    elif direction == "E":
-        new_direction = "S"
-    elif direction == "S":
-        new_direction = "W"
-    elif direction == "W":
-        new_direction = "N"
+def count_words_up_to_sam(word_list):
+    count = 0
+    for i in word_list:
+        if i != 'sam':
+            if isinstance(i, str):
+                count += 1
+        else:
+            break
+    if count == len(word_list):
+        return None
     else:
-        new_direction = None
-    return new_direction
-
+        return count+1
+    
 
 def test(did_pass):
     """ Print the result of a test. """
@@ -28,9 +28,8 @@ def test(did_pass):
 def test_suite():
     """ Run the suite of tests for code in this module (this file).
     """
-    test(turn_clockwise("N") == "E")
-    test(turn_clockwise("W") == "N")
-    test(turn_clockwise(42) == None)
-    test(turn_clockwise("rubbish") == None)
+    test(count_words_up_to_sam(['abandon', 'count', 'close', 'live', 'sam', 'wonder']) == 5)
+    test(count_words_up_to_sam(['0']) == None)
+
 
 test_suite()  # Here is the call to run the tests
